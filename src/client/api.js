@@ -2,7 +2,7 @@ import axios from "axios";
 import  { authToken } from "../store/user";
 
 export const axiosInstance = axios.create({
-    baseURL: "http://localhost:4000/",
+    baseURL: "https://the-backend-newproject.onrender.com",
     timeout: 10000,
     headers: {'X-Custom-Header': 'Footer'}
   });
