@@ -6,7 +6,7 @@ import vine from "@vinejs/vine";
 import { vineResolver } from "@hookform/resolvers/vine";
 import { axiosInstance } from "../client/api";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+
 
 
 // import { Form } from "react-router-dom";
@@ -20,21 +20,20 @@ const schema = vine.compile(
   );
    
  const Shipping = () => {
-   const {cart, getTotalPrice, removeItems, updatedClientSecret} = useStore()
+   const {cart, getTotalPrice, removeItems, updatedClientSecret} = useStore();
    const navigate = useNavigate();
    const totalPrice = getTotalPrice();
   
-   const { register, handleSubmit, getValues} = useForm({
+   const { register, handleSubmit,getValues} = useForm({
      resolver: vineResolver(schema),
    });   
    const onSubmit = async () => {
     try {
       const orderItems = cart.map((cartItem) =>{
         return {
-          quantity: cartItem.quantity,
-          price: cartItem.price,
           productId: cartItem.productId,
-         
+          price: cartItem.price,
+          quantity: cartItem.quantity,
         };
       });
       console.log(`orderItems`, JSON.stringify(orderItems, null, 2))
@@ -54,9 +53,7 @@ const schema = vine.compile(
     }     
    }
 
-   useEffect(() => {
-      onSubmit()
-   },[])
+   
 
   return (
     <div>
