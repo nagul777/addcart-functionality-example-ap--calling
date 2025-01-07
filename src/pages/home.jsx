@@ -72,7 +72,7 @@ const totalPrice = getTotalPrice()
 
   return (
 
-    <div>
+    <div className="max-w-[_1440px] m-[0px_auto]">
 
       {/* {cart.map((cartItem) => {
         return (
@@ -92,68 +92,75 @@ const totalPrice = getTotalPrice()
         );
       })} */}
 
-          {user? (
-                <>
-                  <button onClick={logout}>logout</button>
-                  <Link to={"/profile"}>Profile</Link>
-                  <Link to={"/cart"}>Cart</Link>
-                </>
-            ) 
-          : 
-          (
-              <>
-                <Link to={"/profile"}>Profile</Link>
-                <Link to={"/login"}>Login</Link>
-              </>
-          )}
-
+           <div className="text-center p-[20px_0px] space-x-6 text-lg text-orange-500 font-semibold capitalize">
+                  {user? (
+                        <>
+                          <button onClick={logout}>logout</button>
+                          <Link to={"/profile"}>Profile</Link>
+                          <Link to={"/cart"}>Cart</Link>
+                        </>
+                    ) 
+                  : 
+                  (
+                      <>
+                        <Link to={"/profile"}>Profile</Link>
+                        <Link to={"/login"}>Login</Link>
+                      </>
+                  )}
+           </div>
 {/* <Link to={"/login"}>Login</Link> */}
 
 {cart.map((cartItem) => {
           return (
-            <div key={cartItem.cartId}>
-              {cartItem.name}
-              {cartItem.price} $ {cartItem.quantity}
-              <button
-                onClick={() => {
-                  removeItems(cartItem.cartId);
-                }}
-                className="border-black border-2"
-              >
-                Remove the Item
-              </button>
+            <div key={cartItem.cartId} className="flex justify-between items-center mb-8 p-6 bg-gray-200 shadow-lg text-black font-semibold capitalize">
+               <div>Fruit Name: <span className="pl-2 text-orange-500">{cartItem.name}</span></div>
+               <div>Price: <span className="pl-2 text-orange-500">{cartItem.price}</span></div>
+               <div>Quantity: <span className="pl-2 text-orange-500"> {cartItem.quantity}</span></div>
+
+               <div> 
+                    <button
+                      onClick={() => {
+                        removeItems(cartItem.cartId);
+                      }}
+                      className="bg-orange-500 p-[8px_25px] text-white"
+                    >
+                      Remove the Item
+                    </button>
+               </div>
+
             </div>
           );
         })}
 
-      <header>
-        <span>Total Items In Cart {cart.length}</span>
-        <span>Price ${totalPrice} </span>
+      <header className="pt-7 text-center space-x-4">
+        <span className="text-black font-semibold capitalize">Total Items In Cart :<span className="text-orange-500 text-xl font-semibold capitalize pl-2">{cart.length}</span></span>
+        <span className="text-black font-semibold capitalize">Price: <span className="text-orange-500 text-xl font-semibold capitalize pl-2">${totalPrice}</span></span>
       </header>
 
-     <div>
+     <div  className="flex flex-wrap items-start justify-center gap-6 p-[20px_0px_0px_60px]">
        
      {products.map((product) => {
         return (
           <>
-            <div>
-               <div key={product.id}>
+            <div className="shadow-md p-[20px_15px] bg-white hover:bg-gray-200 rounded-xl">
+               <div key={product.name}>
                   <Link to={`/products/${product.id}`}>
-                      details page{product.id} logging product id
+                      {/* details page{product.name} logging product id */}
+                      <img src={product.image} alt="" width={"350px"}/>
                     </Link>
-                    <img src={product.image} alt="" />
-                      <div >           
-                          <div >
-                              <div> ${product.price}</div>
-                              <div> {product.name}</div>
+                    
+                      <div className="space-x-3">           
+                          <div className="flex justify-between items-center flex-row-reverse p-[15px_20px]">
+                              <div className="text-red-700 text-2xl font-semibold"> ${product.price}</div>
+                              <div className="text-lg capitalize font-medium text-red-900"> {product.name}</div>
                             </div>
 
-                              <div className="space-x-2">
+                              <div className="flex justify-around p-[10px_0px]">
                                     <button onClick={() => {incrementToCart(product)}}
-                                        className="border-2 p-2 border-red-500">Add to cart</button>
+                                        className="border-2 p-[6px_30px] bg-lime-600 text-white font-semibold rounded-md">Add</button>
 
                                       <button onClick={() => {decrementCart(product.id)}} 
-                                          className="border-2 p-2 border-red-500">Remove to cart</button>
+                                          className="border-2 p-[6px_15px] bg-lime-600 text-white font-semibold rounded-md">Remove</button>
                               </div>              
                        </div>
                  </div>

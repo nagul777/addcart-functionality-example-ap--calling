@@ -58,12 +58,12 @@ const schema = vine.compile(
   return (
     <div>
 
-     <div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("city")} />
-                <input {...register("state")} />
-                <input {...register("country")} />
-                 <button type="submit">Submit</button>
+     <div className="p-[20px_0px_20px_0px] bg-gray-400">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-x-4">
+                <input {...register("city")} className="border-2 border-orange-500" />
+                <input {...register("state")} className="border-2 border-orange-500 m-0" />
+                <input {...register("country")} className="border-2 border-orange-500"/>
+                 <button type="submit" className="bg-orange-500 p-[4px_25px] text-white font-medium">Submit</button>
         </form>
      </div>
 

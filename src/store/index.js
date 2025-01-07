@@ -56,6 +56,7 @@ const useStore =  create(
            const cartItem = {
              cartId: "cart" + nanoid(),
              productId: product.id,
+             productName:product.name,
              name: product.name,
              price: product.price,
              image:product.image,
